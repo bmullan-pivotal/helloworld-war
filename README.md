@@ -1,5 +1,36 @@
 # Helloworld WAR
 
+### Building a WAR sample with Tanzu Build Service 
+
+// add the buildpack
+kp clusterstore add default -b gcr.io/paketo-buildpacks/apache-tomcat
+
+// small mod to sample app in this repo
+https://github.com/bmullan-pivotal/helloworld-war
+
+// create image
+kp image create helloworld-war --git https://github.com/bmullan-pivotal/helloworld-war --git-revision master -t barrymullan/helloworld-war
+
+// check the logs 
+kp build logs helloworld-war
+...
+Saving barrymullan/helloworld-war...
+*** Images (sha256:640cd1e2fd8fc79d4c5e3c1b47ea8e743617baefa3695966ce5e1ebc1cc5381c):
+      barrymullan/helloworld-war
+      index.docker.io/barrymullan/helloworld-war:b2.20220105.165458
+
+// run with docker to test
+docker run -p 8080:8080 index.docker.io/barrymullan/helloworld-war:b2.20220105.165458
+...
+[CONTAINER] org.apache.coyote.http11.Http11NioProtocol         INFO    Starting ProtocolHandler ["http-nio-8080"]
+[CONTAINER] org.apache.catalina.startup.Catalina               INFO    Server startup in [522] milliseconds
+
+// test with curl
+ curl localhost:8080 && echo
+This is static resource!
+(base) bmullan-a01:~ bmullan$
+
+
 ### A example Java WAR project / template project
 
 Contains:
