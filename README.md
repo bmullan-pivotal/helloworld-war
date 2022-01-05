@@ -2,6 +2,7 @@
 
 ### Building a WAR sample with Tanzu Build Service 
 
+```
 // add the buildpack
 kp clusterstore add default -b gcr.io/paketo-buildpacks/apache-tomcat
 
@@ -29,7 +30,7 @@ docker run -p 8080:8080 index.docker.io/barrymullan/helloworld-war:b2.20220105.1
  curl localhost:8080 && echo
 This is static resource!
 (base) bmullan-a01:~ bmullan$
-
+```
 
 ### A example Java WAR project / template project
 
